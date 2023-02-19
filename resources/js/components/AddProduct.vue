@@ -1,6 +1,21 @@
 <template>
     <div class="add-product">
-        <h1>{{ title }}</h1>
+        <h2>{{ title }}</h2>
+        <form @submit.prevent="addProduct">
+            <div>
+                <label for="name">Product Name</label>
+                <input type="text" v-model="product.name" id="name">
+            </div>
+            <div>
+                <label for="description">Product Description</label>
+                <textarea v-model="product.description" id="description"></textarea>
+            </div>
+            <div>
+                <label for="price">Product Price</label>
+                <input type="number" v-model="product.price" id="price">
+            </div>
+            <button type="submit">Add Product</button>
+        </form>
     </div>
 </template>
  
@@ -13,18 +28,37 @@
         data() { 
             return {
 
-                title: 'Add Product Component'
-
+                title: 'Add Product',
+                categories: [],
+                product:{
+                   name: '',
+                   description: '',
+                   price: ''
+                }
             } 
         },
  
         methods:{
-  
-        },
-   
-        created() { 
 
-        },
+            getCategories: function(){
+                axios.get('http://127.0.0.1:8000/api/categories')
+                     .then(response => { this.categories = response.data;})
+                     .catch(error => { console.log(error);});
+            },
+
+            addProduct: function(){
+                axios.post(`${window.location.protocol}//${window.location.host}/api/products`, this.product)
+                     .then(response => { 
+                           console.log(response.data);
+                      })
+                      .catch(error => {
+                           console.log(error);
+                      });
+                }
+  
+            },
+   
+        created() { this.getCategories(); },
     }
  
 </script>
