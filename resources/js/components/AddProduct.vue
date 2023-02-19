@@ -14,6 +14,13 @@
                 <label for="price">Product Price</label>
                 <input type="number" v-model="product.price" id="price">
             </div>
+            <div>
+                <label for="category">Product Category</label>
+                <select v-model="product.category_id" id="category">
+                    <option value="">Select Category</option>
+                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                </select>
+            </div>
             <button type="submit">Add Product</button>
         </form>
     </div>
@@ -49,7 +56,7 @@
             addProduct: function(){
                 axios.post(`${window.location.protocol}//${window.location.host}/api/products`, this.product)
                      .then(response => { 
-                           console.log(response.data);
+                           this.$router.push({ path: '/' });
                       })
                       .catch(error => {
                            console.log(error);

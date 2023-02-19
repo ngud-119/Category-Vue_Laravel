@@ -21,8 +21,30 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
-    {
+ 
+
         
-    }
+        public function store(StoreProductRequest $request)
+        {
+            try {
+
+                $product = new Product([
+                    'name' => $request->input('name'),
+                    'description' => $request->input('description'),
+                    'price' => $request->input('price'),
+                ]);
+                $product->save();
+                $category_id = $request->input('category_id');
+                $product->categories()->attach($category_id);
+                return $product;
+
+            } catch (\Exception $e) {
+
+                return back()->withInput()->withErrors(['message' => 'Error: ' . $e->getMessage()]);
+                
+            }
+        }
+        
+        
+    
 }
