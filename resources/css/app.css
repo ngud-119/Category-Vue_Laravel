@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: roboto;
+}
+
+.container{
+    margin: auto;
+    margin-top: 70px;
+    max-width: 80%;
+}
+
+.nav-links{
+    margin-bottom: 50px;
+}
+
+.nav-links span a{
+    display: inline-block;
+    margin-right: 25px;
+    padding: 15px 20px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #B83375;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.component-title{
+    margin-bottom: 30px;
+}
+
+.product{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.product__image{
+    margin-right: 20px;
+    width: 200px;
+    border: 2px solid #eee;
+}
+
+.product__image img{
+    width: 100%;
+    display: block;
+}
+
+.product__info h4{
+    margin-bottom: 7px;
+}
+
+.product__info p{
+    width: 650px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.product__info span{
+    display: inline-block;
+    margin-top: 7px;
+    color: #B83375;
+    font-weight: bold;
+}
+
+label{
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+    display: block;
+}
+
+.add-product form > div{
+    margin-bottom: 20px;
+}
+
+.add-product input{
+    padding: 15px;
+    border: 2px solid #eee;
+}
+
+.add-product textarea{
+    padding: 20px;
+    border: 2px solid #eee;
+    width: 500px;
+    height: 150px;
+}
+
+.form-first-group{
+    display: flex;
+    gap: 50px;
+}
+
+.form-first-group input{
+   width: 400px;
+}
+
+.first-input{
+    margin-bottom: 30px;
+}
+
+.form-second-group{
+    display: flex;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.form-second-group input{
+   width: 400px;  
+}
+
+.form-second-group select{
+    padding: 15px;
+    width: 500px;  
+    border: 2px solid #eee;
+    background-color: transparent;
+ }
+
+ .submit--btn{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 3px;
+    border: 0;
+    color: #fff;
+    background-color: #B83375;
+    font-size: 14px;
+ }

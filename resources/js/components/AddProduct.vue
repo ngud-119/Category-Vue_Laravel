@@ -1,31 +1,37 @@
 <template>
     <div class="add-product">
-        <h2>{{ title }}</h2>
+        <h2 class="component-title">{{ title }}</h2>
         <form @submit.prevent="addProduct">
-            <div>
-                <label for="name">Product Name</label>
-                <input type="text" v-model="product.name" id="name">
+            <div class="form-first-group">
+                <div>
+                    <div class="first-input">
+                        <label for="name">Product Name</label>
+                        <input type="text" v-model="product.name" id="name">
+                     </div>
+                     <div>
+                         <label for="price">Product Price</label>
+                         <input type="number" v-model="product.price" id="price">
+                     </div>
+                </div>
+                <div>
+                     <label for="description">Product Description</label>
+                     <textarea v-model="product.description" id="description"></textarea>
+                </div>
             </div>
-            <div>
-                <label for="description">Product Description</label>
-                <textarea v-model="product.description" id="description"></textarea>
+            <div class="form-second-group">
+                <div>
+                    <label for="image">Product Image</label>
+                    <input type="file" id="image" accept="image/*" v-on:change="onFileSelected">
+                </div>
+                <div>
+                    <label for="category">Product Category</label>
+                    <select v-model="product.category_id" id="category">
+                        <option value="">Select Category</option>
+                        <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label for="price">Product Price</label>
-                <input type="number" v-model="product.price" id="price">
-            </div>
-            <div>
-                <label for="category">Product Category</label>
-                <select v-model="product.category_id" id="category">
-                    <option value="">Select Category</option>
-                    <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
-                </select>
-            </div>
-            <div>
-                <label for="image">Product Image</label>
-                <input type="file" id="image" accept="image/*" v-on:change="onFileSelected">
-            </div>
-            <button type="submit">Add Product</button>
+            <button type="submit" class="submit--btn">Add Product</button>
         </form>
     </div>
 </template>

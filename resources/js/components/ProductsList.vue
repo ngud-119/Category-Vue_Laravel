@@ -1,12 +1,17 @@
 <template>
     <div class="products-list">
-        <h2>{{ title }}</h2>
+        <h2 class="component-title">{{ title }}</h2>
         <div v-for="product in products" :key="product.id">
-            <p>{{ product.name }}</p>
-            <p>{{ product.description }}</p>
-            <p>{{ product.price }}</p>
-            <img  :src="product.image">
-            <hr>
+            <div class="product">
+                <div class="product__image">
+                    <img  :src="product.image">
+                </div>
+                <div class="product__info">
+                    <h4>{{ product.name }}</h4>
+                    <p>{{ product.description }}</p>
+                    <span>$ {{ product.price }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
