@@ -21,6 +21,10 @@
                     <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                 </select>
             </div>
+            <div>
+                <label for="image">Product Image</label>
+                <input type="file" id="image" accept="image/*" v-on:change="onFileSelected">
+            </div>
             <button type="submit">Add Product</button>
         </form>
     </div>
@@ -40,7 +44,9 @@
                 product:{
                    name: '',
                    description: '',
-                   price: ''
+                   price: '',
+                   category_id: null,
+                   image: null,
                 }
             } 
         },
@@ -53,17 +59,27 @@
                      .catch(error => { console.log(error);});
             },
 
-            addProduct: function(){
-                axios.post(`${window.location.protocol}//${window.location.host}/api/products`, this.product)
-                     .then(response => { 
-                           this.$router.push({ path: '/' });
-                      })
-                      .catch(error => {
-                           console.log(error);
-                      });
-                }
-  
+            onFileSelected(event) {
+                this.product.image = event.target.files[0];
             },
+
+
+            addProduct: function(){
+
+                axios.post(`${window.location.protocol}//${window.location.host}/api/products`, this.product,{
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                    .then(response => { 
+                       this.$router.push({ path: '/' });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
+  
+        },
    
         created() { this.getCategories(); },
     }
