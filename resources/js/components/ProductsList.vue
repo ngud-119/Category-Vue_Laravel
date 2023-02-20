@@ -1,16 +1,31 @@
 <template>
     <div class="products-list">
         <h2 class="component-title">{{ title }}</h2>
-        <div v-for="product in products" :key="product.id">
-            <div class="product">
-                <div class="product__image">
-                    <img  :src="product.image">
+        <div class="products-list-container">
+            <div class="products-list-content">
+                <div v-for="product in products" :key="product.id">
+                    <div class="product">
+                        <div class="product__image">
+                            <img :src="product.image">
+                        </div>
+                        <div class="product__info">
+                            <h4>{{ product.name }}</h4>
+                            <p>{{ product.description }}</p>
+                            <span>$ {{ product.price }}</span>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="sidebar">
+                <form>
+                    <div>
+                        <label for="category">Product Category</label>
+                        <select  id="category" v-model="selectedCategory" @change="filterByCategory">
+                            <option value="">Select Category</option>
+                            <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                        </select>
                 </div>
-                <div class="product__info">
-                    <h4>{{ product.name }}</h4>
-                    <p>{{ product.description }}</p>
-                    <span>$ {{ product.price }}</span>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -26,18 +41,38 @@
             return {
                 title: 'Products List',
                 products: [],
+                categories: [],
+                selectedCategory:'',
             } 
         },
  
         methods:{
+
             getProducts: function(){
                 axios.get('http://127.0.0.1:8000/api/products')
                      .then(response => { this.products = response.data;})
                      .catch(error => { console.log(error);});
+            },
+
+            getCategories: function(){
+                axios.get('http://127.0.0.1:8000/api/categories')
+                     .then(response => { this.categories = response.data;})
+                     .catch(error => { console.log(error);});
+            },
+
+            filterByCategory: function(){
+                this.products = this.products.filter(product => {
+                    return product.categories.some(category => { 
+                        return category.id === this.selectedCategory; }); 
+                    }
+                );
             }
         },
    
-        created() { this.getProducts();},
+        created() { 
+            this.getProducts();
+            this.getCategories();
+        },
     }
  
 </script>

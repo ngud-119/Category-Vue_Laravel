@@ -8,7 +8,7 @@
 .container{
     margin: auto;
     margin-top: 70px;
-    max-width: 80%;
+    max-width: 80%;    
 }
 
 .nav-links{
@@ -28,6 +28,16 @@
 
 .component-title{
     margin-bottom: 30px;
+}
+
+.products-list-container{
+    display: flex;
+}
+
+.sidebar{
+    margin-left: 50px;
+    border: 2px solid #eee;
+    width: 20%;
 }
 
 .product{
@@ -127,3 +137,4 @@ label{
     background-color: #B83375;
     font-size: 14px;
  }
+
