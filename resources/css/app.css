@@ -7,7 +7,7 @@
 
 .container{
     margin: auto;
-    margin-top: 100px;
+    margin-top: 80px;
     max-width: 60%;    
 }
 
@@ -16,12 +16,13 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
+    width: 100%;    
 }
 
 .nav-links span a{
     display: inline-block;
-    margin-right: 25px;
-    padding: 15px 20px;
+    margin-right: 20px;
+    padding: 12px 10px;
     color: #fff;
     background-color: #B83375;
     font-size: 14px;
@@ -29,12 +30,19 @@
 }
 
 .logo{
-    width: 240px;
+    width: 220px;
     border-radius: 1px;
     padding: 17px;
     color: #fff;
     background-color: #B83375;
     text-align: center;
+}
+
+.logo a{
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 22px;
 }
 
 .component-title{
@@ -49,13 +57,14 @@
     margin-left: 50px;
     padding: 20px;
     border: 2px solid #eee;
-    width: 20%;
+    width: 18%;
     background-color: #B83375;
 }
 
 .select-filter{
+    margin-bottom: 15px;
     padding: 12px;
-    width: 180px;
+    width: 160px;
     outline: none;
 }
 
@@ -67,7 +76,7 @@
 
 .product__image{
     margin-right: 20px;
-    width: 200px;
+    width: 220px;
     border: 2px solid #eee;
 }
 
@@ -122,9 +131,13 @@ label{
     gap: 50px;
 }
 
-.form-first-group input{
-   width: 400px;
+.form-first-group > div{
+   width: 50%;
 }
+
+.form-first-group input, .form-first-group textarea{
+    width: 100%;
+ }
 
 .first-input{
     margin-bottom: 30px;
@@ -136,13 +149,16 @@ label{
     margin-top: 40px;
 }
 
-.form-second-group input{
-   width: 400px;  
+.form-second-group > div{
+   width: 50%;  
 }
+
+.form-second-group input, .form-second-group select{
+    width: 100%;  
+ }
 
 .form-second-group select{
     padding: 15px;
-    width: 500px;  
     border: 2px solid #eee;
     background-color: transparent;
  }

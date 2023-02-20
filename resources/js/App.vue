@@ -6,7 +6,7 @@
                 <span><router-link to="/add-product">Add Product</router-link></span>
             </div>
             <div>
-                <h3 class="logo">YouCan</h3>
+                <h3 class="logo"><router-link to="/">YouCan</router-link></h3>
             </div>
         </div>
         <div class="main">

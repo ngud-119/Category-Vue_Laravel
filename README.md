@@ -1,4 +1,6 @@
-![laravel_vue_application](https://user-images.githubusercontent.com/59705964/220050729-85693709-ea25-4430-8c10-e9b4dc5cb52a.png)
+![screencapture-127-0-0-1-8000-2023-02-20-11_28_56](https://user-images.githubusercontent.com/59705964/220080511-338cc4a2-42aa-4c80-9fe5-3856ba36a7d0.png)
+
+![form](https://user-images.githubusercontent.com/59705964/220085025-767dc7b6-e918-4e6c-8835-503d30d56df4.png)
 
 ## About Laravel
 
