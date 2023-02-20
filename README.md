@@ -6,30 +6,28 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ## How To Use The Application
 
-Open Your Teminal and Type this commands :
+Open your teminal and type this commands :
 
 - git clone git@github.com:touzaelhassan/LARAVEL-VUE-APPLICATION.git
 - cd LARAVEL-VUE-APPLICATION
 
-#### 1 - Backend :
+#### 1 - Database :
 
 - Create a mysql database in phpmyadmin
 - Add database name and credentials to .env file
-- run : php artisan migrate
-- run : php artisan serve
+
+#### 2 - Backend :
+
+- php artisan migrate
+- php artisan serve
 - Go To : http://localhost:8000
 
-#### 1 - Frontend :
+#### 3 - Frontend :
 
 - npm install
-- run : npm run dev
+- npm run dev
