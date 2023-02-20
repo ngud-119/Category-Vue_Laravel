@@ -6,6 +6,8 @@
     },
     "devDependencies": {
         "axios": "^1.1.2",
+        "cross-env": "^7.0.3",
+        "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^0.7.2",
         "vite": "^4.0.0"
     },

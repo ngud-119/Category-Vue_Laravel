@@ -78,7 +78,6 @@
             },
 
             sortByOrder: function(){
-
                 if(this.selectedOrder === "ASC"){
                     this.products = this.products.sort((a, b) => a.price - b.price);    
                 }
@@ -86,7 +85,6 @@
                 if(this.selectedOrder === "DESC"){
                     this.products = this.products.sort((a, b) => b.price - a.price);    
                 }
-
             }
         },
    
