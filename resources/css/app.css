@@ -36,7 +36,7 @@ body{
 .logo{
     width: 220px;
     border-radius: 1px;
-    padding: 17px;
+    padding: 12px;
     color: #fff;
     background-color: #B83375;
     text-align: center;
@@ -49,6 +49,12 @@ body{
     font-size: 22px;
 }
 
+.logo p{
+    font-size: 8px;
+    margin-top: 3px;
+    color: #eee;
+}
+
 .component-title{
     margin-bottom: 30px;
 }
@@ -57,8 +63,14 @@ body{
     display: flex;
 }
 
+.products-list-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .sidebar{
-    margin-left: 50px;
+    margin-left: 20px;
     padding: 20px;
     border: 2px solid #eee;
     width: 18%;
@@ -72,10 +84,8 @@ body{
     outline: none;
 }
 
-
 .product{
     display: flex;
-    margin-bottom: 20px;
 }
 
 .product__image{
@@ -87,6 +97,12 @@ body{
 .product__image img{
     width: 100%;
     display: block;
+}
+
+.product__info{
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid #eee;
 }
 
 .product__info h4{
@@ -158,13 +174,14 @@ label{
 }
 
 .form-second-group input, .form-second-group select{
-    width: 100%;  
+    width: 100%;
+    background-color: #fff;
  }
 
 .form-second-group select{
     padding: 15px;
     border: 2px solid #eee;
-    background-color: transparent;
+    background-color: #fff;
  }
 
  .submit--btn{

@@ -1,6 +1,6 @@
-![screencapture-127-0-0-1-8000-2023-02-20-11_28_56](https://user-images.githubusercontent.com/59705964/220080511-338cc4a2-42aa-4c80-9fe5-3856ba36a7d0.png)
+![A](https://user-images.githubusercontent.com/59705964/220126817-09e4a7c9-e294-4882-9d72-463b4038f1e5.png)
 
-![form](https://user-images.githubusercontent.com/59705964/220085025-767dc7b6-e918-4e6c-8835-503d30d56df4.png)
+![B](https://user-images.githubusercontent.com/59705964/220126921-a6f84c6d-786a-499d-a0d2-5a804c5bac56.png)
 
 ## About Laravel
 

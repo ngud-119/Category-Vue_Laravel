@@ -41,7 +41,8 @@ class ProductController extends Controller
             $product = $this->productRepository->addProduct($product);
             $category_id = $request->input('category_id');
             $product->categories()->attach($category_id);
-            return $product;  
+            return response('OK', 200);
+
         }   
     }     
 }

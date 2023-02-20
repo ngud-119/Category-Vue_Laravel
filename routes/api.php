@@ -16,7 +16,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('categories', 'App\Http\Controllers\CategoryController@index');
-Route::get('products', 'App\Http\Controllers\ProductController@index');
-Route::post('products', 'App\Http\Controllers\ProductController@store');
+Route::get('/categories', 'App\Http\Controllers\CategoryController@index');
+Route::get('/products', 'App\Http\Controllers\ProductController@index');
+Route::post('/products', 'App\Http\Controllers\ProductController@store');
 
