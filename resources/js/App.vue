@@ -1,8 +1,13 @@
 <template>
     <div class="container">
         <div class="nav-links">
-            <span><router-link to="/">Products List</router-link></span> 
-            <span><router-link to="/add-product">Add Product</router-link></span>
+            <div>
+                <span><router-link to="/">Products List</router-link></span> 
+                <span><router-link to="/add-product">Add Product</router-link></span>
+            </div>
+            <div>
+                <h3 class="logo">YouCan</h3>
+            </div>
         </div>
         <div class="main">
             <router-view></router-view>

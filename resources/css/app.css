@@ -7,11 +7,14 @@
 
 .container{
     margin: auto;
-    margin-top: 70px;
-    max-width: 80%;    
+    margin-top: 100px;
+    max-width: 60%;    
 }
 
 .nav-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 50px;
 }
 
@@ -19,11 +22,19 @@
     display: inline-block;
     margin-right: 25px;
     padding: 15px 20px;
-    border-radius: 3px;
     color: #fff;
     background-color: #B83375;
     font-size: 14px;
     text-decoration: none;
+}
+
+.logo{
+    width: 240px;
+    border-radius: 1px;
+    padding: 17px;
+    color: #fff;
+    background-color: #B83375;
+    text-align: center;
 }
 
 .component-title{
@@ -36,9 +47,17 @@
 
 .sidebar{
     margin-left: 50px;
+    padding: 20px;
     border: 2px solid #eee;
     width: 20%;
+    background-color: #B83375;
 }
+
+.select-filter{
+    padding: 12px;
+    width: 180px;
+}
+
 
 .product{
     display: flex;

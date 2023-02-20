@@ -19,12 +19,20 @@
             <div class="sidebar">
                 <form>
                     <div>
-                        <label for="category">Product Category</label>
-                        <select  id="category" v-model="selectedCategory" @change="filterByCategory">
-                            <option value="">Select Category</option>
+                        <label for="category"></label>
+                        <select  id="category" v-model="selectedCategory" @change="filterByCategory" class="select-filter">
+                            <option value="">Filter by category : </option>
                             <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                         </select>
-                </div>
+                     </div>
+                     <div>
+                        <label for="order"></label>
+                        <select  id="order" v-model="selectedOrder" @change="sortByOrder" class="select-filter">
+                            <option value="">Sort by order : </option>
+                            <option value="ASC">ASC</option>
+                            <option value="DESC">DESC</option>
+                        </select>
+                     </div>
                 </form>
             </div>
         </div>
@@ -43,6 +51,7 @@
                 products: [],
                 categories: [],
                 selectedCategory:'',
+                selectedOrder:'',
             } 
         },
  
@@ -66,6 +75,18 @@
                         return category.id === this.selectedCategory; }); 
                     }
                 );
+            },
+
+            sortByOrder: function(){
+
+                if(this.selectedOrder === "ASC"){
+                    this.products = this.products.sort((a, b) => a.price - b.price);    
+                }
+
+                if(this.selectedOrder === "DESC"){
+                    this.products = this.products.sort((a, b) => b.price - a.price);    
+                }
+
             }
         },
    
