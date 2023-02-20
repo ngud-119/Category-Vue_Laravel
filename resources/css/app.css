@@ -5,6 +5,10 @@
     font-family: roboto;
 }
 
+body{
+    background-color: #fafafa;
+}
+
 .container{
     margin: auto;
     margin-top: 80px;

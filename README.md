@@ -33,3 +33,8 @@ Open your teminal and type this commands :
 
 - npm install
 - npm run dev
+
+#### 4 - Creating a product from the command line :
+
+- php artisan product:add "Product Name" "Product Description" "Product Price" "Caterory Id"
+- Note : Don't use quotation marks for Product Price and Category Id    
