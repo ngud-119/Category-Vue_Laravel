@@ -7,24 +7,24 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Repositories\ProductRepository;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
     {
-        return Product::with('categories')->get();
+        $this->productRepository = $productRepository;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
- 
-    public function store(StoreProductRequest $request)
+    public function index()
     {
-        
+        return $this->productRepository->getProducts();
+    }
+
+    public function store(StoreProductRequest $request)
+    {     
         if ($request->hasFile('image')) {
 
             $file = $request->file('image');
@@ -37,14 +37,11 @@ class ProductController extends Controller
                 'price' => $request->input('price'),
                 'image' => 'http://localhost:8000/images/'.$fileName
             ]);
-    
-            $product->save();
+
+            $product = $this->productRepository->addProduct($product);
             $category_id = $request->input('category_id');
             $product->categories()->attach($category_id);
             return $product;  
-
-        }
-        
+        }   
     }     
-    
 }

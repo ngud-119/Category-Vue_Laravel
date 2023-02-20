@@ -7,14 +7,20 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+     
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function index()
     {
-        return Category::all();
+        return $this->categoryRepository->getCategories();
     }
 }
