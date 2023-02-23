@@ -1,13 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Illuminate\Http\Response;
+use App\Services\ImageUploadService;
+use Illuminate\Http\RedirectResponse;
+use App\Repositories\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use App\Repositories\ProductRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
@@ -18,31 +19,37 @@ class ProductController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function index()
+    public function index() : Collection
     {
         return $this->productRepository->getProducts();
     }
 
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request) : void
     {     
         if ($request->hasFile('image')) {
-
-            $file = $request->file('image');
-            $fileName = $file->getClientOriginalName(); 
-            $path = $file->move(public_path('images'), $fileName); 
+      
+            $path = ImageUploadService::uploadImage($request->file('image'));
 
             $product = new Product([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'price' => $request->input('price'),
-                'image' => 'http://localhost:8000/images/'.$fileName
+                'image' => $path
             ]);
 
-            $product = $this->productRepository->addProduct($product);
-            $category_id = $request->input('category_id');
-            $product->categories()->attach($category_id);
-            return response('OK', 200);
+        } else {
 
-        }   
-    }     
+            $product = new Product([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'image' => 'http://localhost:8000/images/default-image.jpg'
+            ]);
+
+        }  
+
+        $category_id = $request->input('category_id');
+        $product = $this->productRepository->addProduct($product, $category_id);
+
+    }    
 }
