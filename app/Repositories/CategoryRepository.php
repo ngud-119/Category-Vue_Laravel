@@ -3,17 +3,15 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class CategoryRepository
 {
-    protected $model;
-
-    public function __construct(Category $category)
-    {
-        $this->model = $category;
-    }
-
+    
     public function getCategories(){
-        return Category::all();
+
+        return DB::table('categories')->get();
+        
     }
+    
 }

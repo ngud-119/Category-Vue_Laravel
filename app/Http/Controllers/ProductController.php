@@ -11,6 +11,7 @@ use App\Repositories\ProductRepository;
 
 class ProductController extends Controller
 {
+    
     protected $productRepository;
 
     public function __construct(ProductRepository $productRepository)
@@ -38,11 +39,11 @@ class ProductController extends Controller
                 'image' => 'http://localhost:8000/images/'.$fileName
             ]);
 
-            $product = $this->productRepository->addProduct($product);
             $category_id = $request->input('category_id');
-            $product->categories()->attach($category_id);
-            return response('OK', 200);
+            $product = $this->productRepository->addProduct($product, $category_id);
 
         }   
-    }     
+
+    }    
+
 }
