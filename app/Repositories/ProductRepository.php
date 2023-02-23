@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Repositories;
 
 use App\Models\Product;
@@ -23,11 +22,10 @@ class ProductRepository
             'price' => $product['price'],
             'image' => $product['image'],
         ]);
-
+        
         $product->save();
         $product->categories()->attach($category_id);    
-   
-    }
 
+    }
 }
 

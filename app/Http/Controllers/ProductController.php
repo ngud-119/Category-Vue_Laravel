@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Response;
+use App\Services\ImageUploadService;
 use Illuminate\Http\RedirectResponse;
 use App\Repositories\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
-    
     protected $productRepository;
 
     public function __construct(ProductRepository $productRepository)
@@ -27,22 +26,18 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request) : void
     {     
-        
         if ($request->hasFile('image')) {
-
-            $file = $request->file('image');
-            $fileName = $file->getClientOriginalName(); 
-            $path = $file->move(public_path('images'), $fileName); 
+      
+            $path = ImageUploadService::uploadImage($request->file('image'));
 
             $product = new Product([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'price' => $request->input('price'),
-                'image' => 'http://localhost:8000/images/'.$fileName
+                'image' => $path
             ]);
 
-
-        } else{
+        } else {
 
             $product = new Product([
                 'name' => $request->input('name'),
@@ -57,5 +52,4 @@ class ProductController extends Controller
         $product = $this->productRepository->addProduct($product, $category_id);
 
     }    
-
 }
