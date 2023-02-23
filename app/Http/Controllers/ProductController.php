@@ -27,6 +27,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request) : void
     {     
+        
         if ($request->hasFile('image')) {
 
             $file = $request->file('image');
@@ -40,10 +41,20 @@ class ProductController extends Controller
                 'image' => 'http://localhost:8000/images/'.$fileName
             ]);
 
-            $category_id = $request->input('category_id');
-            $product = $this->productRepository->addProduct($product, $category_id);
 
-        }   
+        } else{
+
+            $product = new Product([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'image' => 'http://localhost:8000/images/default-image.jpg'
+            ]);
+
+        }  
+
+        $category_id = $request->input('category_id');
+        $product = $this->productRepository->addProduct($product, $category_id);
 
     }    
 
