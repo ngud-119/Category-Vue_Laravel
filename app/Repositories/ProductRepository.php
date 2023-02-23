@@ -4,16 +4,17 @@ namespace App\Repositories;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductRepository
 {
 
-    public function getProducts()
+    public function getProducts() : Collection
     {
         return Product::with('categories')->get();
     }
 
-    public function addProduct($product, $category_id)
+    public function addProduct($product,  $category_id) : void
     {
 
         $product = new Product([

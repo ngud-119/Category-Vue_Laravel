@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
+use Illuminate\Http\RedirectResponse;
+use App\Repositories\CategoryRepository;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use App\Models\Category;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
@@ -18,7 +19,7 @@ class CategoryController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function index()
+    public function index(): Collection
     {
         return $this->categoryRepository->getCategories();
     }

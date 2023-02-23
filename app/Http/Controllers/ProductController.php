@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
+use App\Repositories\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use App\Repositories\ProductRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
@@ -19,12 +20,12 @@ class ProductController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function index()
+    public function index() : Collection
     {
         return $this->productRepository->getProducts();
     }
 
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request) : void
     {     
         if ($request->hasFile('image')) {
 
