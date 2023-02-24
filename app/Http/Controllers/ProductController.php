@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
+
     protected $productRepository;
 
     public function __construct(ProductRepository $productRepository)
@@ -43,13 +44,14 @@ class ProductController extends Controller
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'price' => $request->input('price'),
-                'image' => 'http://localhost:8000/images/default-image.jpg'
+                'image' => config('app.url').'/images/default-image.jpg'
             ]);
-
+            
         }  
 
         $category_id = $request->input('category_id');
         $product = $this->productRepository->addProduct($product, $category_id);
 
     }    
+    
 }
