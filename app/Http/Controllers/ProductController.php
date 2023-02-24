@@ -2,12 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use App\Services\ImageUploadService;
-use Illuminate\Http\RedirectResponse;
 use App\Repositories\ProductRepository;
 use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
@@ -25,8 +23,9 @@ class ProductController extends Controller
         return $this->productRepository->getProducts();
     }
 
-    public function store(StoreProductRequest $request) : void
+    public function store(StoreProductRequest $request) : JsonResponse
     {     
+        
         if ($request->hasFile('image')) {
       
             $path = ImageUploadService::uploadImage($request->file('image'));
@@ -51,6 +50,7 @@ class ProductController extends Controller
 
         $category_id = $request->input('category_id');
         $product = $this->productRepository->addProduct($product, $category_id);
+        return response()->json(['message' => 'Product created successfully', 'product' => $product], 201);
 
     }    
     

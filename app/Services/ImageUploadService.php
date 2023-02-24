@@ -5,6 +5,7 @@ use Illuminate\Http\UploadedFile;
 
 class ImageUploadService
 {
+    
     public static function uploadImage(UploadedFile $file)
     {
         $fileName = $file->getClientOriginalName(); 

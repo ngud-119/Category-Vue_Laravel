@@ -13,7 +13,7 @@ class ProductRepository
         return Product::with('categories')->get();
     }
 
-    public function addProduct($product,  $category_id) : void
+    public function addProduct($product,  $category_id) : Product
     {
 
         $product = new Product([
@@ -24,8 +24,10 @@ class ProductRepository
         ]);
         
         $product->save();
-        $product->categories()->attach($category_id);    
+        $product->categories()->attach($category_id);
+        return $product;
 
     }
+
 }
 
