@@ -78,7 +78,7 @@
                     }
                 })
                     .then(response => { 
-                       this.$router.push({ path: '/' });
+                        this.$router.push({ path: '/' });
                     })
                     .catch(error => {
                         console.log(error);
