@@ -2,30 +2,23 @@
 namespace App\Repositories;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductRepository
 {
 
-    public function getProducts() : Collection
+    public function getProducts() : Builder
     {
-        return Product::with('categories')->get();
+        return Product::query();
     }
 
-    public function addProduct($product,  $category_id) : void
+    public function addProduct(Product $product) : Product
     {
 
-        $product = new Product([
-            'name' => $product['name'],
-            'description' => $product['description'],
-            'price' => $product['price'],
-            'image' => $product['image'],
-        ]);
-        
         $product->save();
-        $product->categories()->attach($category_id);    
+        return $product;
 
     }
+
 }
 

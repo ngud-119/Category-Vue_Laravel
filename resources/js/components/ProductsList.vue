@@ -58,13 +58,13 @@
         methods:{
 
             getProducts: function(){
-                axios.get('http://127.0.0.1:8000/api/products')
-                     .then(response => { this.products = response.data; })
+                axios.get(`${window.location.protocol}//${window.location.host}/api/products`)
+                     .then(response => { this.products = response.data; console.log(this.products)})
                      .catch(error => { console.log(error);});
             },
 
             getCategories: function(){
-                axios.get('http://127.0.0.1:8000/api/categories')
+                axios.get(`${window.location.protocol}//${window.location.host}/api/categories`)
                      .then(response => { this.categories = response.data;})
                      .catch(error => { console.log(error);});
             },

@@ -5,11 +5,12 @@ use Illuminate\Http\UploadedFile;
 
 class ImageUploadService
 {
-    public static function uploadImage($file)
+    
+    public static function uploadImage(UploadedFile $file)
     {
         $fileName = $file->getClientOriginalName(); 
         $file->move(public_path('images'), $fileName);
-        $path = 'http://localhost:8000/images/'.$fileName;
+        $path = config('app.url').'/images/'.$fileName;
         return $path;
     }
     

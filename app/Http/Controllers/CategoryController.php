@@ -1,25 +1,23 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Response;
+use App\Services\CategoryService;
 use Illuminate\Support\Collection;
-use Illuminate\Http\RedirectResponse;
-use App\Repositories\CategoryRepository;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+
 
 class CategoryController extends Controller
 {
-    protected $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryService = $categoryService;
     }
 
     public function index(): Collection
     {
-        return $this->categoryRepository->getCategories();
+        return $this->categoryService->getCategories();
     }
+    
 }
