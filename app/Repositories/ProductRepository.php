@@ -2,14 +2,14 @@
 namespace App\Repositories;
 
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductRepository
 {
 
-    public function getProducts() : Collection
+    public function getProducts() : Builder
     {
-        return Product::with('categories')->get();
+        return Product::query();
     }
 
     public function addProduct(Product $product) : Product

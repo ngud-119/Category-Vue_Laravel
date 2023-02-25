@@ -17,7 +17,7 @@ class ProductService
 
     public function getProducts() : Collection
     {
-        return $this->productRepository->getProducts();
+        return $this->productRepository->getProducts()->with('categories')->get();
     }
 
     public function addProduct(Product $product, int $category_id) : Product

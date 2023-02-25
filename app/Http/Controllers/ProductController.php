@@ -40,7 +40,7 @@ class ProductController extends Controller
             $path = ImageUploadService::uploadImage($request->file('image'));
             $image = $path;
         } else {
-            $image = config('app.url') . '/images/default-image.jpg';
+            $image = config('app.url').'/images/default-image.jpg';
         }
 
         return new Product([

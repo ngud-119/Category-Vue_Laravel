@@ -59,7 +59,7 @@
 
             getProducts: function(){
                 axios.get(`${window.location.protocol}//${window.location.host}/api/products`)
-                     .then(response => { this.products = response.data; })
+                     .then(response => { this.products = response.data; console.log(this.products)})
                      .catch(error => { console.log(error);});
             },
 
