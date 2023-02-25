@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
+use App\Http\Requests\StoreProductRequest;
 
 class AddProductCommand extends Command
 {
@@ -26,21 +27,32 @@ class AddProductCommand extends Command
      */
     public function handle(): void
     {
-    
-        $name = $this->argument('name');
-        $description = $this->argument('description');
-        $price = $this->argument('price');
-        $category_id = $this->argument('category_id');
-    
-        $product = new Product;
-        $product->name = $name;
-        $product->description = $description;
-        $product->price = $price;
-        $product->image = 'default.jpg';
+        $request = new StoreProductRequest([
+            'name' => $this->argument('name'),
+            'description' => $this->argument('description'),
+            'price' => $this->argument('price'),
+            'category_id' => $this->argument('category_id'),
+        ]);
+
+        $validator = app('validator')->make($request->all(), $request->rules());
+
+        if ($validator->fails()) {
+            $this->error($validator->errors()->first());
+            return;
+        }
+
+        $validatedData = $validator->validated();
+
+        $product = new Product([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'image' => config('app.url').'/images/default-image.jpg',
+        ]);
+
         $product->save();
-        $product->categories()->attach($category_id);
-    
-        $this->info('Product added successfully !!.');
+        $product->categories()->attach($validatedData['category_id']);
+        $this->info('Product added successfully!');
 
     }
     
