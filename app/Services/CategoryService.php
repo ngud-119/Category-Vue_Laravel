@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Services;
-
-use App\Models\Category;
+use Illuminate\Support\Collection;
 use App\Repositories\CategoryRepository;
-use Illuminate\Database\Eloquent\Collection;
+
 
 class CategoryService
 {

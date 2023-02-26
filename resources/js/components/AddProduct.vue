@@ -35,14 +35,14 @@
         </form>
     </div>
 </template>
- 
+
 <script>
 
     export default{
 
         name: 'AddProduct',
 
-        data() { 
+        data() {
             return {
 
                 title: 'Add Product',
@@ -54,9 +54,9 @@
                    category_id: null,
                    image: null,
                 }
-            } 
+            }
         },
- 
+
         methods:{
 
             getCategories: function(){
@@ -77,22 +77,21 @@
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                    .then(response => { 
+                    .then(response => {
                         this.$router.push({ path: '/' });
                     })
                     .catch(error => {
-                        
-                        console.log(error.request.response);
+                        console.log(JSON.parse(error.request.response).errors);
                     });
             }
-  
+
         },
-   
+
         created() { this.getCategories(); },
     }
- 
+
 </script>
- 
+
 <style>
- 
+
 </style>
