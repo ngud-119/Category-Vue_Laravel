@@ -36,7 +36,6 @@ class ProductController extends Controller
 
     protected function createProduct(storeProductRequest $request): Product
     {
-
         if ($request->hasFile('image')) {
             $path = ImageUploadService::uploadImage($request->file('image'));
             $image = $path;

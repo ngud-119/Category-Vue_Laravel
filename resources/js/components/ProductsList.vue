@@ -38,28 +38,28 @@
         </div>
     </div>
 </template>
- 
+
 <script>
 
     export default{
 
         name: 'ProductsList',
 
-        data() { 
+        data() {
             return {
                 title: 'Products List',
                 products: [],
                 categories: [],
                 selectedCategory:'',
                 selectedOrder:'',
-            } 
+            }
         },
- 
+
         methods:{
 
             getProducts: function(){
                 axios.get(`${window.location.protocol}//${window.location.host}/api/products`)
-                     .then(response => { this.products = response.data; console.log(this.products)})
+                     .then(response => { this.products = response.data;})
                      .catch(error => { console.log(error);});
             },
 
@@ -71,31 +71,31 @@
 
             filterByCategory: function(){
                 this.products = this.products.filter(product => {
-                    return product.categories.some(category => { 
-                        return category.id === this.selectedCategory; }); 
+                    return product.categories.some(category => {
+                        return category.id === this.selectedCategory; });
                     }
                 );
             },
 
             sortByOrder: function(){
                 if(this.selectedOrder === "ASC"){
-                    this.products = this.products.sort((a, b) => a.price - b.price);    
+                    this.products = this.products.sort((a, b) => a.price - b.price);
                 }
 
                 if(this.selectedOrder === "DESC"){
-                    this.products = this.products.sort((a, b) => b.price - a.price);    
+                    this.products = this.products.sort((a, b) => b.price - a.price);
                 }
             }
         },
-   
-        created() { 
+
+        created() {
             this.getProducts();
             this.getCategories();
         },
     }
- 
+
 </script>
- 
+
 <style>
- 
+
 </style>

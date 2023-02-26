@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Validation\Factory;
 use App\Http\Requests\StoreProductRequest;
 
@@ -25,17 +26,16 @@ class AddProductCommand extends Command
 
     /**
      * Execute the console command.
+     * @throws BindingResolutionException
      */
     public function handle(): void
     {
-
         $request = new StoreProductRequest([
             'name' => $this->argument('name'),
             'description' => $this->argument('desc'),
             'price' => $this->argument('price'),
             'category_id' => $this->argument('category_id'),
         ]);
-
 
         $factory = app(Factory::class);
         $validator = $factory->make($request->all(), $request->rules());

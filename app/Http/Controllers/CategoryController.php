@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 class CategoryController extends Controller
 {
-    protected $categoryService;
+    protected CategoryService $categoryService;
 
     public function __construct(CategoryService $categoryService)
     {
