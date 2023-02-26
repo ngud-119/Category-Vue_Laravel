@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories;
 
 use App\Models\Product;
@@ -10,14 +11,5 @@ class CategoryRepository
     public function getCategories(): Collection
     {
         return Category::all();
-    }
-
-    public function attachProductToCategory($productId, $categoryId)
-    {
-
-        $product = Product::find($productId);
-        $category = Category::find($categoryId);
-        $product->categories()->attach($category);
-
     }
 }

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Product;
 use Illuminate\Console\Command;
+use Illuminate\Validation\Factory;
 use App\Http\Requests\StoreProductRequest;
 
 class AddProductCommand extends Command
@@ -13,7 +14,7 @@ class AddProductCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'product:add {name} {description} {price} {category_id}';
+    protected $signature = 'product:add {name} {desc} {price} {category_id}';
 
     /**
      * The console command description.
@@ -27,14 +28,17 @@ class AddProductCommand extends Command
      */
     public function handle(): void
     {
+
         $request = new StoreProductRequest([
             'name' => $this->argument('name'),
-            'description' => $this->argument('description'),
+            'description' => $this->argument('desc'),
             'price' => $this->argument('price'),
             'category_id' => $this->argument('category_id'),
         ]);
 
-        $validator = app('validator')->make($request->all(), $request->rules());
+
+        $factory = app(Factory::class);
+        $validator = $factory->make($request->all(), $request->rules());
 
         if ($validator->fails()) {
             $this->error($validator->errors()->first());
@@ -47,13 +51,11 @@ class AddProductCommand extends Command
             'name' => $validatedData['name'],
             'description' => $validatedData['description'],
             'price' => $validatedData['price'],
-            'image' => config('app.url').'/images/default-image.jpg',
+            'image' => config('app.url') . '/images/default-image.jpg',
         ]);
 
         $product->save();
         $product->categories()->attach($validatedData['category_id']);
         $this->info('Product added successfully!');
-
     }
-    
 }
