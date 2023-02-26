@@ -12,6 +12,11 @@ class ProductRepository
         return Product::query();
     }
 
+    public function getProductById(int $id): Product
+    {
+        return Product::findOrFail($id);
+    }
+
     public function addProduct(Product $product): Product
     {
         $product->save();
