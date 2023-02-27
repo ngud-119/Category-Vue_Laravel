@@ -17,6 +17,17 @@ class ProductRepository
         return Product::findOrFail($id);
     }
 
+    public function getProductByName(string $name): ?Product
+    {
+        $product = Product::where('name', $name)->first();
+
+        if (!$product) {
+            return null;
+        }
+
+        return $product;
+    }
+
     public function addProduct(Product $product): Product
     {
         $product->save();

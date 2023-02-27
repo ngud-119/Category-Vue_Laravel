@@ -25,10 +25,10 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request): JsonResponse
     {
-
         $product = $this->createProduct($request);
         $category_id = $request->input('category_id');
-        $createdProduct = $this->productService->addProduct($product, $category_id);
+        $createdProduct = $this->productService
+            ->addProduct($product, $category_id);
         return response()->json([
             'message' => 'Product created successfully',
             'createdProduct' => $createdProduct], 201);
