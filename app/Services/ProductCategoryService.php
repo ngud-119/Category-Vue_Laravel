@@ -13,8 +13,10 @@ class ProductCategoryService
         $this->productRepository = $productRepository;
     }
 
-    public function attachCategoryToProduct(int $product_id, int $category_id): void
-    {
+    public function attachCategoryToProduct(
+        int $product_id,
+        int $category_id
+    ): void {
          $product = $this->productRepository->getProductById($product_id);
          $product->categories()->attach($category_id);
     }

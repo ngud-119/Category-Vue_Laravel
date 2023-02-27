@@ -6,7 +6,7 @@
                 <div v-for="product in products" :key="product.id">
                     <div class="product">
                         <div class="product__image">
-                            <img :src="product.image">
+                            <img :src="product.image" alt="Product Name">
                         </div>
                         <div class="product__info">
                             <h4>{{ product.name }}</h4>
@@ -20,15 +20,30 @@
                 <form>
                     <div>
                         <label for="category"></label>
-                        <select  id="category" v-model="selectedCategory" @change="filterByCategory" class="select-filter">
-                            <option value="">Filter by category : </option>
-                            <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+                        <select
+                            id="category"
+                            v-model="selectedCategory"
+                            @change="filterByCategory"
+                            class="select-filter">
+                                <option value="">Filter by category : </option>
+                                <option
+                                    v-for="category in categories"
+                                    :key="category.id"
+                                    :value="category.id"
+                                >
+                                    {{ category.name }}
+                                </option>
                         </select>
                      </div>
                      <div>
                         <label for="order"></label>
-                        <select  id="order" v-model="selectedOrder" @change="sortByOrder" class="select-filter">
-                            <option value="">Sort by order : </option>
+                        <select
+                            id="order"
+                            v-model="selectedOrder"
+                            @change="sortByOrder"
+                            class="select-filter"
+                        >
+                            <option value="">Sort by price : </option>
                             <option value="ASC">ASC</option>
                             <option value="DESC">DESC</option>
                         </select>
@@ -78,11 +93,10 @@
             },
 
             sortByOrder: function(){
-                if(this.selectedOrder === "ASC"){
+                if (this.selectedOrder === "ASC") {
                     this.products = this.products.sort((a, b) => a.price - b.price);
                 }
-
-                if(this.selectedOrder === "DESC"){
+                if (this.selectedOrder === "DESC") {
                     this.products = this.products.sort((a, b) => b.price - a.price);
                 }
             }
