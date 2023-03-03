@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Product;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 
-class ProductRepository
+class ProductRepositoryImpl implements ProductRepository
 {
     public function getProducts(): Builder
     {

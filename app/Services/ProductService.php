@@ -3,27 +3,27 @@
 namespace App\Services;
 
 use App\Models\Product;
-use App\Repositories\ProductRepository;
+use App\Repositories\Product\ProductRepositoryImpl;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
 class ProductService
 {
     protected const PRODUCT_ALREADY_EXISTS = 'Product already exists.';
-    private ProductRepository $productRepository;
+    private ProductRepositoryImpl $productRepositoryImpl;
     private ProductCategoryService $productCategoryService;
 
     public function __construct(
-        ProductRepository $productRepository,
+        ProductRepositoryImpl $productRepositoryImpl,
         ProductCategoryService $productCategoryService
     ) {
-        $this->productRepository = $productRepository;
+        $this->productRepositoryImpl = $productRepositoryImpl;
         $this->productCategoryService = $productCategoryService;
     }
 
     public function getProducts(): Collection
     {
-        return $this->productRepository->getProducts()
+        return $this->productRepositoryImpl->getProducts()
             ->with('categories')->get();
     }
 
@@ -32,12 +32,12 @@ class ProductService
      */
     public function addProduct(Product $product, int $category_id): Product
     {
-        $productFromDatabase = $this->productRepository
+        $productFromDatabase = $this->productRepositoryImpl
             ->getProductByName($product->name);
         if ($productFromDatabase != null) {
             throw new Exception(self::PRODUCT_ALREADY_EXISTS);
         }
-        $createdProduct = $this->productRepository->addProduct($product);
+        $createdProduct = $this->productRepositoryImpl->addProduct($product);
         $this->productCategoryService
             ->attachCategoryToProduct($createdProduct->id, $category_id);
         return $createdProduct;

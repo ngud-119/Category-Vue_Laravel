@@ -2,22 +2,22 @@
 
 namespace App\Services;
 
-use App\Repositories\ProductRepository;
+use App\Repositories\Product\ProductRepositoryImpl;
 
 class ProductCategoryService
 {
-    private ProductRepository $productRepository;
+    private ProductRepositoryImpl $productRepositoryImpl;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepositoryImpl $productRepositoryImpl)
     {
-        $this->productRepository = $productRepository;
+        $this->productRepositoryImpl = $productRepositoryImpl;
     }
 
     public function attachCategoryToProduct(
         int $product_id,
         int $category_id
     ): void {
-         $product = $this->productRepository->getProductById($product_id);
+         $product = $this->productRepositoryImpl->getProductById($product_id);
          $product->categories()->attach($category_id);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Services\ProductService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Services\ImageUploadService;
 use App\Http\Requests\StoreProductRequest;
@@ -23,6 +24,9 @@ class ProductController extends Controller
         return $this->productService->getProducts();
     }
 
+    /**
+     * @throws Exception
+     */
     public function store(StoreProductRequest $request): JsonResponse
     {
         $product = $this->createProduct($request);
@@ -31,7 +35,8 @@ class ProductController extends Controller
             ->addProduct($product, $category_id);
         return response()->json([
             'message' => 'Product created successfully',
-            'createdProduct' => $createdProduct], 201);
+            'createdProduct' => $createdProduct
+        ], 201);
     }
 
     protected function createProduct(storeProductRequest $request): Product
