@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Category;
 
 use Illuminate\Support\Collection;
 use App\Repositories\Category\CategoryRepositoryImpl;
 
-class CategoryService
+class CategoryServiceImpl implements CategoryService
 {
     private CategoryRepositoryImpl $categoryRepositoryImpl;
 

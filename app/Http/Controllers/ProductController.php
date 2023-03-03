@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Services\ProductService;
+use App\Services\Product\ProductServiceImpl;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Services\ImageUploadService;
@@ -12,16 +12,16 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ProductController extends Controller
 {
-    protected ProductService $productService;
+    protected ProductServiceImpl $productServiceImpl;
 
-    public function __construct(ProductService $productService)
+    public function __construct(ProductServiceImpl $productServiceImpl)
     {
-        $this->productService = $productService;
+        $this->productServiceImpl = $productServiceImpl;
     }
 
     public function index(): Collection
     {
-        return $this->productService->getProducts();
+        return $this->productServiceImpl->getProducts();
     }
 
     /**
@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
         $product = $this->createProduct($request);
         $category_id = $request->input('category_id');
-        $createdProduct = $this->productService
+        $createdProduct = $this->productServiceImpl
             ->addProduct($product, $category_id);
         return response()->json([
             'message' => 'Product created successfully',

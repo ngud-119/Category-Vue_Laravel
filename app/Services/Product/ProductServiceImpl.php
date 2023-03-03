@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Product;
 
 use App\Models\Product;
 use App\Repositories\Product\ProductRepositoryImpl;
+use App\Services\ProductCategoryService;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
-class ProductService
+class ProductServiceImpl implements ProductService
 {
     protected const PRODUCT_ALREADY_EXISTS = 'Product already exists.';
     private ProductRepositoryImpl $productRepositoryImpl;
