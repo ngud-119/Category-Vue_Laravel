@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Category;
 
 use App\Models\Category;
 use Illuminate\Support\Collection;
 
-class CategoryRepository
+class CategoryRepositoryImpl implements CategoryRepository
 {
     public function getCategories(): Collection
     {

@@ -3,19 +3,19 @@
 namespace App\Services;
 
 use Illuminate\Support\Collection;
-use App\Repositories\CategoryRepository;
+use App\Repositories\Category\CategoryRepositoryImpl;
 
 class CategoryService
 {
-    private CategoryRepository $categoryRepository;
+    private CategoryRepositoryImpl $categoryRepositoryImpl;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepositoryImpl $categoryRepositoryImpl)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryRepositoryImpl = $categoryRepositoryImpl;
     }
 
     public function getCategories(): Collection
     {
-        return $this->categoryRepository->getCategories();
+        return $this->categoryRepositoryImpl->getCategories();
     }
 }
