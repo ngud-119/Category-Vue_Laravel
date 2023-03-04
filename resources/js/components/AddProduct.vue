@@ -37,6 +37,9 @@
 </template>
 
 <script>
+    import { useToastr } from "../toastr";
+
+    const toastr = useToastr();
 
     export default{
 
@@ -78,10 +81,14 @@
                     }
                 })
                     .then(response => {
+                        toastr.success("Product created successfully !!.");
                         this.$router.push({ path: '/' });
                     })
                     .catch(error => {
-                        console.log(JSON.parse(error.request.response).errors);
+                        const errors = JSON.parse(error.request.response).errors;
+                        for (const property in errors) {
+                            toastr.warning(`${errors[property]}`)
+                        }
                     });
             }
 

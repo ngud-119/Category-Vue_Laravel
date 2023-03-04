@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^4.0.0",
+        "toastr": "^2.1.4",
         "vue": "^3.2.36",
         "vue-axios": "^3.5.2",
         "vue-loader": "^17.0.1",
