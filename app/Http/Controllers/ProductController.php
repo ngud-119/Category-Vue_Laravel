@@ -19,9 +19,18 @@ class ProductController extends Controller
         $this->productServiceImpl = $productServiceImpl;
     }
 
-    public function index(): Collection
+    public function index(): JsonResponse
     {
-        return $this->productServiceImpl->getProducts();
+        $result = ['status' => 200];
+        try {
+            $result['products'] = $this->productServiceImpl->getProducts();
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+        return response()->json($result, $result['status']);
     }
 
     /**

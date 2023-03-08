@@ -74,13 +74,13 @@
 
             getProducts: function(){
                 axios.get(`${window.location.protocol}//${window.location.host}/api/products`)
-                     .then(response => { this.products = response.data;})
+                     .then(response => { this.products = response.data.products;})
                      .catch(error => { console.log(error);});
             },
 
             getCategories: function(){
                 axios.get(`${window.location.protocol}//${window.location.host}/api/categories`)
-                     .then(response => { this.categories = response.data;})
+                     .then(response => { this.categories = response.data.categories;})
                      .catch(error => { console.log(error);});
             },
 
