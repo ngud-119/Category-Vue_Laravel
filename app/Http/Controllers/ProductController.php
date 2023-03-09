@@ -34,7 +34,7 @@ class ProductController extends Controller
         return response()->json($result, $result['status']);
     }
 
-    public function getProductsByCategory($categoryId): JsonResponse
+    public function getProductsByCategory(int $categoryId): JsonResponse
     {
         $result = ['status' => 200];
         $products = $this->productServiceImpl->getProductsByCategory($categoryId);

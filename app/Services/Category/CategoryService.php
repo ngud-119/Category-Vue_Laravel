@@ -2,6 +2,7 @@
 
 namespace App\Services\Category;
 
+use App\Models\Category;
 use Illuminate\Support\Collection;
 
 interface CategoryService
@@ -12,4 +13,5 @@ interface CategoryService
      * @return Collection
      */
     public function getCategories(): Collection;
+    public function getCategoryById(int $categoryId): Category;
 }

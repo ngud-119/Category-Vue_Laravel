@@ -3,7 +3,8 @@
 namespace App\Services\Product;
 
 use App\Models\Product;
-use App\Repositories\Product\ProductRepositoryImpl;
+use App\Repositories\Product\ProductRepository;
+use App\Services\Category\CategoryServiceImpl;
 use App\Services\ProductCategoryService;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,29 +12,28 @@ use Illuminate\Database\Eloquent\Collection;
 class ProductServiceImpl implements ProductService
 {
     protected const PRODUCT_ALREADY_EXISTS = 'Product already exists.';
-    private ProductRepositoryImpl $productRepositoryImpl;
+    private ProductRepository $productRepositoryImpl;
+    private CategoryServiceImpl $categoryServiceImpl;
     private ProductCategoryService $productCategoryService;
 
     public function __construct(
-        ProductRepositoryImpl $productRepositoryImpl,
-        ProductCategoryService $productCategoryService
+        ProductRepository $productRepositoryImpl,
+        ProductCategoryService $productCategoryService,
+        CategoryServiceImpl $categoryServiceImpl
     ) {
         $this->productRepositoryImpl = $productRepositoryImpl;
+        $this->categoryServiceImpl = $categoryServiceImpl;
         $this->productCategoryService = $productCategoryService;
     }
 
     public function getProducts(): Collection
     {
-        return $this->productRepositoryImpl->getProducts()
-            ->with('categories')->get();
+        return $this->productRepositoryImpl->getProducts()->get();
     }
 
     public function getProductsByCategory($categoryId): Collection
     {
-        return $this->productRepositoryImpl->getProducts()
-            ->whereHas('categories', function ($query) use ($categoryId) {
-                $query->where('category_id', $categoryId);
-            })->get();
+        return $this->categoryServiceImpl->getCategoryById($categoryId)->getAllProducts();
     }
 
     /**
