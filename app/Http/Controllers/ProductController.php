@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Services\Product\ProductServiceImpl;
 use Exception;
+use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use App\Services\ImageUploadService;
 use App\Http\Requests\StoreProductRequest;
-use Illuminate\Database\Eloquent\Collection;
+use App\Services\Product\ProductServiceImpl;
 
 class ProductController extends Controller
 {
+    private const PRODUCT_CREATED_SUCCESSFULLY = 'Product created successfully';
+    private const DEFAULT_IMAGE_URL = '/images/default-image.jpg';
     protected ProductServiceImpl $productServiceImpl;
 
     public function __construct(ProductServiceImpl $productServiceImpl)
@@ -33,6 +34,14 @@ class ProductController extends Controller
         return response()->json($result, $result['status']);
     }
 
+    public function getProductsByCategory($categoryId): JsonResponse
+    {
+        $result = ['status' => 200];
+        $products = $this->productServiceImpl->getProductsByCategory($categoryId);
+        $result['products'] = $products;
+        return response()->json($result, $result['status']);
+    }
+
     /**
      * @throws Exception
      */
@@ -43,7 +52,7 @@ class ProductController extends Controller
         $createdProduct = $this->productServiceImpl
             ->addProduct($product, $category_id);
         return response()->json([
-            'message' => 'Product created successfully',
+            'message' => self::PRODUCT_CREATED_SUCCESSFULLY,
             'createdProduct' => $createdProduct
         ], 201);
     }
@@ -54,7 +63,7 @@ class ProductController extends Controller
             $path = ImageUploadService::uploadImage($request->file('image'));
             $image = $path;
         } else {
-            $image = config('app.url') . '/images/default-image.jpg';
+            $image = config('app.url') . self::DEFAULT_IMAGE_URL;
         }
 
         return new Product([

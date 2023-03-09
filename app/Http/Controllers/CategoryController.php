@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Category\CategoryServiceImpl;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use App\Services\Category\CategoryServiceImpl;
 
 class CategoryController extends Controller
 {

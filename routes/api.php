@@ -16,5 +16,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class)->except(['show']);
 Route::resource('categories', CategoryController::class);
+Route::get('/products/{categoryId}', [ProductController::class, 'getProductsByCategory'])->name('products.getProductsByCategory');
+

@@ -28,6 +28,14 @@ class ProductServiceImpl implements ProductService
             ->with('categories')->get();
     }
 
+    public function getProductsByCategory($categoryId): Collection
+    {
+        return $this->productRepositoryImpl->getProducts()
+            ->whereHas('categories', function ($query) use ($categoryId) {
+                $query->where('category_id', $categoryId);
+            })->get();
+    }
+
     /**
      * @throws Exception
      */

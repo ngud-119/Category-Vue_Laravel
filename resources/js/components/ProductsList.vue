@@ -19,13 +19,13 @@
             <div class="sidebar">
                 <form>
                     <div>
-                        <label for="category"></label>
+                        <label for="category" class="select-label">Filter by category : </label>
                         <select
                             id="category"
                             v-model="selectedCategory"
                             @change="filterByCategory"
                             class="select-filter">
-                                <option value="">Filter by category : </option>
+                                <option value="">All</option>
                                 <option
                                     v-for="category in categories"
                                     :key="category.id"
@@ -36,14 +36,14 @@
                         </select>
                      </div>
                      <div>
-                        <label for="order"></label>
+                        <label for="order" class="select-label">Sort by price : </label>
                         <select
                             id="order"
                             v-model="selectedOrder"
                             @change="sortByOrder"
                             class="select-filter"
                         >
-                            <option value="">Sort by price : </option>
+                            <option value="">Order </option>
                             <option value="ASC">ASC</option>
                             <option value="DESC">DESC</option>
                         </select>
@@ -85,11 +85,9 @@
             },
 
             filterByCategory: function(){
-                this.products = this.products.filter(product => {
-                    return product.categories.some(category => {
-                        return category.id === this.selectedCategory; });
-                    }
-                );
+                axios.get(`${window.location.protocol}//${window.location.host}/api/products/${this.selectedCategory}`)
+                    .then(response => { this.products = response.data.products;})
+                    .catch(error => { console.log(error);});
             },
 
             sortByOrder: function(){

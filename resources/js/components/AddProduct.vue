@@ -64,14 +64,13 @@
 
             getCategories: function(){
                 axios.get(`${window.location.protocol}//${window.location.host}/api/categories`)
-                     .then(response => { this.categories = response.data;})
+                     .then(response => { this.categories = response.data.categories;})
                      .catch(error => { console.log(error);});
             },
 
             onFileSelected(event) {
                 this.product.image = event.target.files[0];
             },
-
 
             addProduct: function(){
 

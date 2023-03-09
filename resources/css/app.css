@@ -10,9 +10,8 @@ body{
 }
 
 .container{
-    margin: auto;
-    margin-top: 80px;
-    max-width: 60%;    
+    margin: 80px auto auto;
+    max-width: 60%;
 }
 
 .nav-links{
@@ -20,7 +19,7 @@ body{
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
-    width: 100%;    
+    width: 100%;
 }
 
 .nav-links span a{
@@ -170,7 +169,7 @@ label{
 }
 
 .form-second-group > div{
-   width: 50%;  
+   width: 50%;
 }
 
 .form-second-group input, .form-second-group select{
@@ -183,6 +182,11 @@ label{
     border: 2px solid #eee;
     background-color: #fff;
  }
+
+.select-label{
+    margin-top: 15px;
+    color: #eee;
+}
 
  .submit--btn{
     display: inline-block;
