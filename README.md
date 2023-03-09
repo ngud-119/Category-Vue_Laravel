@@ -17,14 +17,16 @@ Open your teminal and type this commands :
 
 - git clone git@github.com:touzaelhassan/LARAVEL-VUE-APPLICATION.git
 - cd LARAVEL-VUE-APPLICATION
+- composer install
 
 #### 1 - Database :
 
 - Create a mysql database in phpmyadmin
-- Add database name and credentials to .env file
+- Add database name and credentials to .env file => cp .env.example .env
 
 #### 2 - Backend :
 
+- php artisan key:generate
 - php artisan migrate
 - php artisan serve
 - Go To : http://localhost:8000
@@ -37,4 +39,4 @@ Open your teminal and type this commands :
 #### 4 - Creating a product from the command line :
 
 - php artisan product:add "Product Name" "Product Description" "Product Price" "Caterory Id"
-- Note : Don't use quotation marks for Product Price and Category Id    
+
